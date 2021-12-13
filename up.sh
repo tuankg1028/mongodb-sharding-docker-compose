@@ -6,7 +6,7 @@ export COMPOSE_PROJECT_NAME=mongodb-sharding-docker-compose
 ## Generate global auth key between cluster nodes
 openssl rand -base64 756 > mongodb.key
 chmod 600 mongodb.key
-chmod 999:999 mongodb.key
+chown 999:999 mongodb.key
 ## Start the whole stack
 docker-compose up -d
 sleep 5
