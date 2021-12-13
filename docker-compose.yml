@@ -25,19 +25,19 @@ services:
     volumes:
       - $PWD/mongodb.key:/mongodb.key
       - $PWD/mongo-shard-01.init.js:/mongo-shard-01.init.js
-      - mongo-shard-01:/data/db
+      - mongo-shard-01a:/data/db
   mongo-shard-01b:
     image: mongo
     command: mongod --auth --shardsvr --port 27018 --replSet mongo-shard-01 --dbpath /data/db --keyFile /mongodb.key
     volumes:
       - $PWD/mongodb.key:/mongodb.key
-      - mongo-shard-01:/data/db
+      - mongo-shard-01b:/data/db
   mongo-shard-01c:
     image: mongo
     command: mongod --auth --shardsvr --port 27018 --replSet mongo-shard-01 --dbpath /data/db --keyFile /mongodb.key
     volumes:
       - $PWD/mongodb.key:/mongodb.key
-      - mongo-shard-01:/data/db
+      - mongo-shard-01c:/data/db
   # Second shard
   mongo-shard-02a:
     image: mongo
@@ -45,19 +45,19 @@ services:
     volumes:
       - $PWD/mongodb.key:/mongodb.key
       - $PWD/mongo-shard-02.init.js:/mongo-shard-02.init.js
-      - mongo-shard-02:/data/db
+      - mongo-shard-02a:/data/db
   mongo-shard-02b:
     image: mongo
     command: mongod --auth --shardsvr --port 27019 --replSet mongo-shard-02 --dbpath /data/db --keyFile /mongodb.key
     volumes:
       - $PWD/mongodb.key:/mongodb.key
-      - mongo-shard-02:/data/db
+      - mongo-shard-02b:/data/db
   mongo-shard-02c:
     image: mongo
     command: mongod --auth --shardsvr --port 27019 --replSet mongo-shard-02 --dbpath /data/db --keyFile /mongodb.key
     volumes:
       - $PWD/mongodb.key:/mongodb.key
-      - mongo-shard-02:/data/db
+      - mongo-shard-02c:/data/db
   # Third shard
   mongo-shard-03a:
     image: mongo
@@ -65,19 +65,19 @@ services:
     volumes:
       - $PWD/mongodb.key:/mongodb.key
       - $PWD/mongo-shard-03.init.js:/mongo-shard-03.init.js
-      - mongo-shard-03:/data/db
+      - mongo-shard-03a:/data/db
   mongo-shard-03b:
     image: mongo
     command: mongod --auth --shardsvr --port 27020 --replSet mongo-shard-03 --dbpath /data/db --keyFile /mongodb.key
     volumes:
       - $PWD/mongodb.key:/mongodb.key
-      - mongo-shard-03:/data/db
+      - mongo-shard-03b:/data/db
   mongo-shard-03c:
     image: mongo
     command: mongod --auth --shardsvr --port 27020 --replSet mongo-shard-03 --dbpath /data/db --keyFile /mongodb.key
     volumes:
       - $PWD/mongodb.key:/mongodb.key
-      - mongo-shard-03:/data/db
+      - mongo-shard-03c:/data/db
   # Mongo router
   mongo-router-01:
     image: mongo
@@ -103,6 +103,12 @@ services:
       - mongo-shard-03b
       - mongo-shard-03c
 volumes:
-  mongo-shard-01: {}
-  mongo-shard-02: {}
-  mongo-shard-03: {}
+  mongo-shard-01a: {}
+  mongo-shard-01b: {}
+  mongo-shard-01c: {}
+  mongo-shard-02a: {}
+  mongo-shard-02b: {}
+  mongo-shard-02c: {}
+  mongo-shard-03a: {}
+  mongo-shard-03b: {}
+  mongo-shard-03c: {}
