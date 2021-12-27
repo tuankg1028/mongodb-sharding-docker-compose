@@ -8,8 +8,8 @@ openssl rand -base64 756 > mongodb.key
 chmod 600 mongodb.key
 chown 999:999 mongodb.key
 ## Start the whole stack
-# docker-compose up -d
-docker stack deploy --compose-file docker-compose.yml mongodbdocker
+docker-compose up -d
+# docker stack deploy --compose-file docker-compose.yml mongodbdocker
 sleep 15
 ## Config servers setup
 docker exec -it mongodbdocker_mongo-configserver-01_1 sh -c "mongo --port 27017 < /mongo-configserver.init.js"
